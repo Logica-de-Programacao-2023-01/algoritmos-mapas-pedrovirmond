@@ -1,0 +1,23 @@
+// Escreva uma função que receba um slice de inteiros e retorne um novo slice contendo
+// apenas os valores únicos, ou seja, sem duplicatas. Utilize um mapa para auxiliar na
+// remoção das duplicatas.
+package main
+
+import "fmt"
+
+func removerDuplicatas(vals []int32) []int32 {
+	valsUnicos := make([]int32, 0)
+	valsMap := make(map[int]bool)
+	for _, val := range vals {
+		if !valsMap[int(val)] {
+			valsUnicos = append(valsUnicos, val)
+			valsMap[int(val)] = true
+		}
+	}
+	return valsUnicos
+}
+func main() {
+	vals := []int32{1, 2, 3, 3, 3, 4, 4, 5, 6, 7, 7, 7, 8, 9, 9, 9, 9, 9}
+	valsUnicos := removerDuplicatas(vals)
+	fmt.Println(valsUnicos)
+}

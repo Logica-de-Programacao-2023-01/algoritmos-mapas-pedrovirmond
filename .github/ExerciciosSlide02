@@ -1,0 +1,33 @@
+//Escreva uma função que receba um mapa onde as chaves são nomes de alunos e os
+//valores são slices de notas. A função deve calcular a média das notas de cada aluno e
+//retornar um novo mapa onde as chaves são os nomes dos alunos e os valores são as
+//médias correspondentes.
+
+package main
+
+import "fmt"
+
+func mediaNotas(notas map[string][]float64) map[string]float64 {
+	medias := make(map[string]float64)
+	for aluno, notas := range notas {
+		soma := 0.0
+		conta := len(notas)
+		for _, nota := range notas {
+			soma += nota
+		}
+		medias[aluno] = soma / float64(conta)
+	}
+	return medias
+}
+func main() {
+	notas := map[string][]float64{
+		"João":    {8.5, 6.3, 7.8},
+		"Maria":   {9.3, 5.9, 7.2},
+		"José":    {8.2, 7.1, 7.6},
+		"Ronaldo": {4.2, 9.7, 8.8},
+	}
+	medias := mediaNotas(notas)
+	for aluno, media := range medias {
+		fmt.Printf("%s: %.2f\n", aluno, media)
+	}
+}
